@@ -14,7 +14,7 @@
 <script lang="ts" setup>
 import { ElMessage } from 'element-plus'
 import { VocUpload } from '@/core/element-plus/index'
-import { useVocabularyTestPageStore } from '@/components/store/vocabulary-test-page-store'
+import { useVocabularyTestPageStore } from '@/store/vocabulary-test-page-store'
 import VocButton from '@/core/element-plus/VocButton.vue'
 import InlineMessage from '@/core/InlineMessage.vue'
 import { computed, ref } from 'vue'

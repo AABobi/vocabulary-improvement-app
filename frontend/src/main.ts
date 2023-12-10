@@ -5,7 +5,7 @@ import 'element-plus/dist/index.css'
 import '@/core/css/import.scss'
 import { routes} from './route/router'
 import { createRouter, createWebHistory } from 'vue-router'
-import {useAuthenticationStore} from "@/core/store/authentication-store";
+import {useAuthenticationStore} from "@/store/authentication-store";
 
 function main() {
   const router = createRouter({

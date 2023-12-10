@@ -1,8 +1,8 @@
 <template>
-    <section class="PageLogin">
-        <VocForm class="PageLogin__loginBox" label-position="top">
+    <section class="'PageRegister">
+        <VocForm class="PageRegister__registerBox" label-position="top">
             <VocFormItem label="login" >
-                <VocInput v-model="formRegisterAccessibility.login"></VocInput>
+                <VocInput v-model="formRegisterAccessibility.username"></VocInput>
             </VocFormItem>
             <VocFormItem label="email" >
                 <VocInput v-model="formRegisterAccessibility.email"></VocInput>
@@ -13,8 +13,14 @@
             <VocFormItem label="repeat password" >
                 <VocInput v-model="formRegisterAccessibility.repeatedPassword"></VocInput>
             </VocFormItem>
+            <VocFormItem label="first name" >
+                <VocInput v-model="formRegisterAccessibility.firstName"></VocInput>
+            </VocFormItem>
+            <VocFormItem label="last name" >
+                <VocInput v-model="formRegisterAccessibility.lastName"></VocInput>
+            </VocFormItem>
             <VocFormItem>
-                <VocButton type="primary" class="PageLogin__loginButton" @click="register">Login</VocButton>
+                <VocButton type="primary" class="PageRegister__registerButton" @click="register()">REGISTER</VocButton>
             </VocFormItem>
         </VocForm>
     </section>
@@ -24,48 +30,40 @@
 import { VocForm, VocFormItem, VocInput, VocAlert } from "@/core/element-plus/index";
 import { reactive, ref} from "vue";
 import VocButton from "@/core/element-plus/VocButton.vue";
-import {usePageLoginStore} from "@/components/page-login-store";
-import {useVocabularyTestPageStore} from "@/components/store/vocabulary-test-page-store";
-
+import {useVocabularyTestPageStore} from "@/store/vocabulary-test-page-store";
+import type { RegisterForm } from '@/domain/register-form';
 import {useRouter} from "vue-router";
+import { useAuthenticationStore } from "@/store/authentication-store";
 
 const loginName = ref('')
-const store = usePageLoginStore();
 const testStore = useVocabularyTestPageStore();
-const loginEmail = () => {
-  //  store.login(formRegisterAccessibility.loginEmail, formRegisterAccessibility.password);
-}
-const router = useRouter()
-const register = () => {
-    testStore.testAuth = true;
-    router.push('/')
-    if(formRegisterAccessibility.password === formRegisterAccessibility.repeatedPassword) {
-        const registerForm: RegisterForm = {
-            email: formRegisterAccessibility.email,
-            login: formRegisterAccessibility.login,
-            password: formRegisterAccessibility.password,
-        }
-        store.register(registerForm);
-    } else {
+const authStore = useAuthenticationStore();
 
-    }
+
+const register = async() => {
+    await authStore.register(formRegisterAccessibility);
 }
-const formRegisterAccessibility = reactive({
+
+const router = useRouter()
+
+const formRegisterAccessibility = reactive<RegisterForm>({
+    username: '',
     email: '',
-    login:'',
     password: '',
-    repeatedPassword:'',
+    repeatedPassword: '',
+    firstName: '',
+    lastName: ''
 })
 </script>
 
 <style scoped lang="scss">
-.PageLogin {
+.PageRegister {
   display: flex;
   justify-content: center;
   align-items: center;
   border: solid 5px  black;
 
-  &__loginBox {
+  &__registerBox {
     background: $color-background;
     width: 300px;
     height: 350px;
@@ -73,7 +71,7 @@ const formRegisterAccessibility = reactive({
     border-radius: $sizeS;
   }
 
-  &__loginButton {
+  &__registerButton {
     margin-top: $sizeXL;
   }
 }

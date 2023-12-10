@@ -4,7 +4,7 @@ import UploadVocabulary from '@/components/AddVocabulary/UploadVocabulary.vue'
 import type { RouteRecordRaw } from 'vue-router'
 import HomePage from "@/components/Home/HomePage.vue";
 import {createRouter, createWebHistory} from "vue-router";
-import {useVocabularyTestPageStore} from "@/components/store/vocabulary-test-page-store";
+import {useVocabularyTestPageStore} from "@/store/vocabulary-test-page-store";
 
 const routes: Array<RouteRecordRaw> = [
   { path: '/', name: 'VocabularyTestPageView', component: VocabularyTestPageView },

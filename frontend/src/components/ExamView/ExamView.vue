@@ -39,7 +39,7 @@
 <script setup lang="ts">
 import { VocButton, VocInput, VocForm, VocFormItem, VocRow, VocCol } from '@/core/element-plus'
 import {computed, onMounted, ref} from 'vue'
-import { useVocabularyTestPageStore } from '@/components/store/vocabulary-test-page-store'
+import { useVocabularyTestPageStore } from '@/store/vocabulary-test-page-store'
 import InlineMessage from "@/core/InlineMessage.vue";
 import type {VocabularyFileData} from "@/components/domain/vocabulary-file-data";
 const test =  { type: 'primary', text: 'primary' };

@@ -11,7 +11,7 @@
 
 <script setup>
 import { useRouter } from 'vue-router'
-import { useVocabularyTestPageStore } from '@/components/store/vocabulary-test-page-store'
+import { useVocabularyTestPageStore } from '@/store/vocabulary-test-page-store'
 
 const store = useVocabularyTestPageStore()
 
